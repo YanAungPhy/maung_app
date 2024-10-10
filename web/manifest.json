@@ -1,6 +1,6 @@
 {
-    "name": "maung_app",
-    "short_name": "maung_app",
+    "name": "two_d",
+    "short_name": "two_d",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

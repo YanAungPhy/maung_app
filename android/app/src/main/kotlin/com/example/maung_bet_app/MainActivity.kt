@@ -1,4 +1,4 @@
-package com.example.maung_app
+package com.example.maung_bet_app
 
 import io.flutter.embedding.android.FlutterActivity
 
