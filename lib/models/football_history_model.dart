@@ -1,62 +1,18 @@
+
 class FootballHistoryModel {
-  List<FootballHistoryModelDetail>? list;
-  int? page;
-  int? size;
-  int? numberofElements;
-  int? totalElements;
-  int? totalPages;
-
-  FootballHistoryModel({
-    this.list,
-    this.page,
-    this.size,
-    this.numberofElements,
-    this.totalElements,
-    this.totalPages,
-  });
-
-  FootballHistoryModel.fromJson(Map<String, dynamic> json) {
-    if (json['list'] != null) {
-      list = <FootballHistoryModelDetail>[];
-      json['list'].forEach((v) {
-        list!.add(FootballHistoryModelDetail.fromJson(v));
-      });
-    }
-    page = json['page'];
-    size = json['size'];
-    numberofElements = json['numberofElements'];
-    totalElements = json['totalElements'];
-    totalPages = json['totalPages'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    if (list != null) {
-      data['list'] = list!.map((v) => v.toJson()).toList();
-    }
-    data['page'] = page;
-    data['size'] = size;
-    data['numberofElements'] = numberofElements;
-    data['totalElements'] = totalElements;
-    data['totalPages'] = totalPages;
-    return data;
-  }
-}
-
-class FootballHistoryModelDetail {
   int? id;
   String? token;
   int? userId;
   String? userName;
   String? gameType;
-  int? amount;
+  double? amount;
   String? status;
   int? teams;
   int? createdDateInMilliSeconds;
   int? updatedDateInMilliSeconds;
   List<SoccerBetDetail>? soccerBetDetails;
 
-  FootballHistoryModelDetail({
+  FootballHistoryModel({
     this.id,
     this.token,
     this.userId,
@@ -70,7 +26,7 @@ class FootballHistoryModelDetail {
     this.soccerBetDetails,
   });
 
-  FootballHistoryModelDetail.fromJson(Map<String, dynamic> json) {
+  FootballHistoryModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     token = json['token'];
     userId = json['userId'];

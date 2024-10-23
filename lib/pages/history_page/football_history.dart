@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:two_d/bloc/history/bloc/history_bloc_bloc.dart';
 import 'package:two_d/pages/error_page/error_page.dart';
+import 'package:two_d/pages/history_page/football_history_detail.dart';
 import 'package:two_d/utils/global_import.dart';
 
 import '../../bloc/history/bloc/football/football_history_bloc.dart';
@@ -55,11 +57,9 @@ class _FootballHistoryPageState extends State<FootballHistoryPage> {
           if (state.historyModelList.isNotEmpty) {
             if (state.isFirst) {
               historyModelList = state.historyModelList;
-              print("TestingHistoryModelList:   ${historyModelList.length} First");
             } else {
               historyModelList.addAll(state.historyModelList);
             }
-            print("TestingHistoryModelList:   ${size} Second");
             return listVbuilder(size);
           } else {
             return const ErrorPage(error: "မှတ်တမ်းမရှိပါ");
@@ -95,71 +95,141 @@ class _FootballHistoryPageState extends State<FootballHistoryPage> {
       child: ListView.builder(
           shrinkWrap: true,
           itemBuilder: (context, index) {
-            return listItemWidget(historyModelList[index], size);
+            return listItemWidget(historyModelList[index], size,context);
           },
           itemCount: historyModelList.length),
     );
   }
 
-  Widget listItemWidget(FootballHistoryModel historyModelDetail, Size size) {
-    return Column(
-      children: [
-        Container(
-          width: double.infinity,
-          padding: const EdgeInsets.all(10),
-          color: AppColor.greenBlack.withOpacity(.7),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  const Text(
-                    "Date: ",
-                    style: TextStyle(
-                        fontSize: 13,
+  Widget listItemWidget(FootballHistoryModel historyModelDetail, Size size, BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 10.0),
+      child: InkWell(
+        onTap: () {
+          // Navigate to the desired page when the item is clicked
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => FootballHistoryDetailPage(historyModelDetail: historyModelDetail), // Pass the model to the next page
+            ),
+          );
+        },
+        child: Material(
+          elevation: 4,
+          borderRadius: BorderRadius.circular(12),
+          color: Colors.white,
+          child: Container(
+            decoration: BoxDecoration(
+              color: AppColor.white.withOpacity(.7),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            padding: const EdgeInsets.all(30),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      "Date: ",
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 235, 121, 250),
+                      ),
+                    ),
+                    Text(
+                      DateFormat.yMEd().add_jms().format(
+                        DateTime.fromMillisecondsSinceEpoch(
+                            historyModelDetail.createdDateInMilliSeconds!),
+                      ),
+                      textAlign: TextAlign.right,
+                      style: const TextStyle(
+                        fontSize: 14,
                         fontWeight: FontWeight.w600,
-                        color: Color.fromARGB(255, 235, 121, 250)),
-                  ),
-                  // Text(historyModelDetail.list.get.toString(),
-                  //   style: const TextStyle(
-                  //       fontSize: 13,
-                  //       fontWeight: FontWeight.w600,
-                  //       color: Color.fromARGB(255, 235, 121, 250)),
-                  // ),
-                ],
-              ),
-              const SizedBox(height: 10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Container(
-                    width: size.width * 0.3,
-                    alignment: Alignment.center,
-                    child: const Text(
-                      "Amount",
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          color: AppColor.nearlywhite),
+                        color: Color.fromARGB(255, 235, 121, 250),
+                      ),
                     ),
-                  ),
-                  Container(
-                    width: size.width * 0.3,
-                    alignment: Alignment.center,
-                    child: const Text(
-                      'text',
+                  ],
+                ),
+                const SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      "Maung Body: ",
                       style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          color: AppColor.nearlywhite),
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 235, 121, 250),
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                    Text(
+                      historyModelDetail.gameType.toString(),
+                      textAlign: TextAlign.right,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: Color.fromARGB(255, 235, 121, 250),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      "Amount: ",
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 235, 121, 250),
+                      ),
+                    ),
+                    Text(
+                      historyModelDetail.amount.toString(),
+                      textAlign: TextAlign.right,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: Color.fromARGB(255, 235, 121, 250),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      "ပွဲအခြေအနေ: ",
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 235, 121, 250),
+                      ),
+                    ),
+                    Text(
+                      historyModelDetail.status.toString(),
+                      textAlign: TextAlign.right,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: Color.fromARGB(255, 235, 121, 250),
+
+
+
+
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
-      ],
+      ),
     );
   }
 
