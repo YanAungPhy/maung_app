@@ -110,7 +110,7 @@ class _FootballHistoryPageState extends State<FootballHistoryPage> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => FootballHistoryDetailPage(historyModelDetail: historyModelDetail), // Pass the model to the next page
+              builder: (context) => FootballHistoryDetailPage(historyId: 26), // Pass the model to the next page
             ),
           );
         },

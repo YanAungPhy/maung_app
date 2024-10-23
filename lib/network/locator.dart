@@ -10,6 +10,7 @@ import 'package:two_d/network/repository/banks_repo.dart';
 import 'package:two_d/network/repository/betRepo.dart';
 import 'package:two_d/network/repository/carousel_image_repo.dart';
 import 'package:two_d/network/repository/change_password_repo.dart';
+import 'package:two_d/network/repository/football_detail_history_repo.dart';
 import 'package:two_d/network/repository/football_history_repo.dart';
 import 'package:two_d/network/repository/get_user_repo.dart';
 import 'package:two_d/network/repository/history_repo.dart';
@@ -119,4 +120,7 @@ void locator() {
 
   FootballGetHistoryRepoImpl getFootballHistoryRepoImpl = FootballGetHistoryRepoImpl(getIt.call());
   getIt.registerLazySingleton(() => getFootballHistoryRepoImpl);
+
+  FootballDetailGetHistoryRepoImpl getDetailHistoryRepoImpl = FootballDetailGetHistoryRepoImpl(getIt.call());
+  getIt.registerLazySingleton(() => getDetailHistoryRepoImpl);
 }
