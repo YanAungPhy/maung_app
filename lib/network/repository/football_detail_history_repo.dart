@@ -12,6 +12,6 @@ class FootballDetailGetHistoryRepoImpl implements FootballDetailGetHistoryRepo {
   @override
   Future<ResponseModel> getDetailHistory({required int historyId}) async {
     return await apiService.getReq(
-        "soccer-bet?token",);
+      "soccer-bet/$historyId",);
   }
 }

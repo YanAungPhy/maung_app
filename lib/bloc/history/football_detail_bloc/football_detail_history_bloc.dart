@@ -12,27 +12,36 @@ class FootballDetailHistoryBloc extends Bloc<FootballDetailHistoryBlocEvent, Foo
   int page = 0;
 
   FootballDetailHistoryBloc(this._getHistoryRepoImpl) : super(FootballDetailHistoryBlocInitial()) {
-    on<FetchFootballHistoryDetailEvent>(_onFetchFootballHistoryDetailEvent);
+    on<TapFootballHistoryDetailEvent>(_onFetchFootballHistoryDetailEvent);
   }
 
   Future<void> _onFetchFootballHistoryDetailEvent(
-      FootballDetailHistoryBlocEvent event, Emitter<FootballDetailHistoryBlocState> emit) async {
+      TapFootballHistoryDetailEvent event, Emitter<FootballDetailHistoryBlocState> emit) async {
     page = 0;
     emit(FootballDetailHistoryBlocLoading());
 
-    ResponseModel responseModel = await _getHistoryRepoImpl.getDetailHistory(historyId: 26);
+    try {
+      ResponseModel responseModel = await _getHistoryRepoImpl.getDetailHistory(historyId: event.historyId);
 
-    if (responseModel.msgState == MsgState.data) {
-      List<FootballDetailHistoryModel> historyModelList = (responseModel.data['list'] as List)
-          .map((e) => FootballDetailHistoryModel.fromJson(e))
-          .toList();
+      if (responseModel.msgState == MsgState.data) {
+        if (responseModel.data['soccerBetDetails'] != null && responseModel.data['soccerBetDetails'] is List) {
+          List<FootballDetailHistoryModel> betDetailList = (responseModel.data['soccerBetDetails'] as List)
+              .map((e) => FootballDetailHistoryModel.fromJson(e))
+              .toList();
 
-      emit(FootballDetailHistoryBlocSuccess(
-          historyModelList: historyModelList, isFirst: true));
-    } else if (responseModel.msgState == MsgState.error) {
-      String error = responseModel.data;
-      emit(FootballDetailHistoryBlocFail(error: error));
+          emit(FootballDetailHistoryBlocSuccess(
+              historyModelList: betDetailList, isFirst: true));
+        } else {
+          emit(FootballDetailHistoryBlocFail(error: "Invalid or empty list in response"));
+        }
+      } else if (responseModel.msgState == MsgState.error) {
+        String error = responseModel.data;
+        emit(FootballDetailHistoryBlocFail(error: error));
+      }
+    } catch (e, stacktrace) {
+      print("Error: $e");
+      print("Stacktrace: $stacktrace");
+      emit(FootballDetailHistoryBlocFail(error: e.toString()));
     }
   }
-
 }
