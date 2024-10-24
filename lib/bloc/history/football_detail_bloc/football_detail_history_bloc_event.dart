@@ -8,10 +8,10 @@ abstract class FootballDetailHistoryBlocEvent extends Equatable {
 }
 
 // This should belong to FootballDetailHistoryBloc
-class FetchFootballHistoryDetailEvent extends FootballDetailHistoryBlocEvent {
+class TapFootballHistoryDetailEvent extends FootballDetailHistoryBlocEvent {
   final int historyId;
 
-  const FetchFootballHistoryDetailEvent({required this.historyId});
+  const TapFootballHistoryDetailEvent({required this.historyId});
 
   @override
   List<Object?> get props => [historyId];
