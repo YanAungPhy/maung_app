@@ -117,7 +117,7 @@ class _FootballHistoryPageState extends State<FootballHistoryPage> {
         child: Material(
           elevation: 4,
           borderRadius: BorderRadius.circular(12),
-          color: Colors.white,
+          color: Colors.white.withOpacity(0.3),
           child: Container(
             decoration: BoxDecoration(
               color: AppColor.white.withOpacity(.7),
