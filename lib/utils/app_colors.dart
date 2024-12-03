@@ -16,4 +16,6 @@ class AppColor {
   static const Color greenDark2 = Color.fromARGB(255, 15, 63, 61);
   static const Color win = Color.fromARGB(255, 3, 148, 34);
   static const Color cyber = Color.fromARGB(255, 21, 239, 247);
+  static const Color greenDark3 = Color.fromARGB(120, 25, 110, 60);
+
 }

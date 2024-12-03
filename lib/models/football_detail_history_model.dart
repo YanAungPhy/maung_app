@@ -257,8 +257,8 @@ class FootballDetailHistoryModel {
       final int betTeamId;
       final BetTeam betTeam;
       final bool betUnder;
-      final String underTeam;
-      final double amount;
+      final String? underTeam;
+      final double? amount;
 
       FootballDetailHistoryModel({
             required this.id,
@@ -268,8 +268,8 @@ class FootballDetailHistoryModel {
             required this.betTeamId,
             required this.betTeam,
             required this.betUnder,
-            required this.underTeam,
-            required this.amount,
+            this.underTeam,
+            this.amount,
       });
 
       factory FootballDetailHistoryModel.fromJson(Map<String, dynamic> json) {
