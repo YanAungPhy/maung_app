@@ -24,6 +24,8 @@ class FootballWidget extends StatefulWidget {
 class _FootballWidgetState extends State<FootballWidget> {
   bool isResultTap = false;
   bool? isTeamOne;
+   bool isChooseGp = false;
+  String? betUnderValue = "null";
 
   @override
   Widget build(BuildContext context) {
@@ -69,13 +71,18 @@ class _FootballWidgetState extends State<FootballWidget> {
                         isTeamOne = true;
                       });
 
+                      if (isChooseGp == true) {
+                        betUnderValue = "false";
+                      } else {
+                        betUnderValue = "null";
+                      }
                       widget.onRemove();
 
                       widget.onChoose({
                         widget.model: SoccerBetDetailModel(
                           betTeamId: widget.model.homeTeamId,
                           gameId: widget.model.id,
-                          betUnder: false,
+                          betUnder: betUnderValue,
                         )
                       });
                     },
@@ -148,13 +155,19 @@ class _FootballWidgetState extends State<FootballWidget> {
                         isTeamOne = false;
                       });
 
+                      if (isChooseGp == true) {
+                        betUnderValue = "true";
+                      } else {
+                        betUnderValue = "null";
+                      }
+
                       widget.onRemove();
 
                       widget.onChoose({
                         widget.model: SoccerBetDetailModel(
                           betTeamId: widget.model.awayTeamId,
                           gameId: widget.model.id,
-                          betUnder: true,
+                          betUnder: betUnderValue,
                         )
                       });
                     },
@@ -223,6 +236,7 @@ class _FootballWidgetState extends State<FootballWidget> {
                       setState(() {
                         isResultTap = !isResultTap;
                         isTeamOne = null;
+                        isChooseGp = !isChooseGp!;
                       });
 
                       widget.onRemove();

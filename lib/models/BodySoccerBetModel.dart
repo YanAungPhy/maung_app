@@ -40,7 +40,7 @@ class BodySoccerBetModel {
 class BodySoccerBetDetailModel {
   int gameId;
   int betTeamId;
-  bool betUnder;
+  String? betUnder;
   int? betAmount;
 
   BodySoccerBetDetailModel({
@@ -72,7 +72,7 @@ class BodySoccerBetDetailModel {
   BodySoccerBetDetailModel copyWith({
     int? gameId,
     int? betTeamId,
-    bool? betUnder,
+    String? betUnder,
     int? betAmount,
   }) {
     return BodySoccerBetDetailModel(

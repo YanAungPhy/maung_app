@@ -25,6 +25,8 @@ class BodyFootballWidget extends StatefulWidget {
 class _FootballWidgetState extends State<BodyFootballWidget> {
   bool isResultTap = false;
   bool? isTeamOne;
+  bool isChooseGp = false;
+  String? betUnderValue = "null";
 
   @override
   Widget build(BuildContext context) {
@@ -69,13 +71,19 @@ class _FootballWidgetState extends State<BodyFootballWidget> {
                         isTeamOne = true;
                       });
 
+                      if (isChooseGp == true) {
+                        betUnderValue = "false";
+                      } else {
+                        betUnderValue = "null";
+                      }
+
                       widget.onRemove();
 
                       widget.onChoose({
                         widget.model: BodySoccerBetDetailModel(
                           betTeamId: widget.model.homeTeamId,
                           gameId: widget.model.id,
-                          betUnder: false,
+                          betUnder: betUnderValue,
                           betAmount: 0,
                         )
                       });
@@ -149,13 +157,18 @@ class _FootballWidgetState extends State<BodyFootballWidget> {
                         isTeamOne = false;
                       });
 
+                      if (isChooseGp == true) {
+                        betUnderValue = "true";
+                      } else {
+                        betUnderValue = "null";
+                      }
                       widget.onRemove();
 
                       widget.onChoose({
                         widget.model: BodySoccerBetDetailModel(
                           betTeamId: widget.model.awayTeamId,
                           gameId: widget.model.id,
-                          betUnder: true,
+                          betUnder: betUnderValue,
                           betAmount: 2000,
                         )
                       });
@@ -225,6 +238,7 @@ class _FootballWidgetState extends State<BodyFootballWidget> {
                       setState(() {
                         isResultTap = !isResultTap;
                         isTeamOne = null;
+                        isChooseGp = !isChooseGp!;
                       });
 
                       widget.onRemove();

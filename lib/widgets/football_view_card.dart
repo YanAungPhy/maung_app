@@ -19,11 +19,11 @@ class FootballViewCard extends StatefulWidget {
 
 class _FootballViewCardState extends State<FootballViewCard> {
   bool isResultTap = true;
-  bool? isTeamOne;
+  String? isTeamOne = "false";
 
   @override
   void initState() {
-    isTeamOne = !widget.detailModel.betUnder;
+    //isTeamOne = !widget.detailModel.betUnder;// yap
     super.initState();
   }
 
@@ -45,7 +45,7 @@ class _FootballViewCardState extends State<FootballViewCard> {
 
                     onTap: () {
                       setState(() {
-                        isTeamOne = true;
+                        isTeamOne = "true";
                       });
                     },
                     child: Stack(
@@ -113,7 +113,7 @@ class _FootballViewCardState extends State<FootballViewCard> {
                     //     :
                     onTap: () {
                       setState(() {
-                        isTeamOne = false;
+                        isTeamOne = "false";
                       });
                     },
                     child: Stack(
@@ -180,7 +180,7 @@ class _FootballViewCardState extends State<FootballViewCard> {
                     onTap: () {
                       setState(() {
                         isResultTap = !isResultTap;
-                        isTeamOne = null;
+                        isTeamOne = "null";
                       });
                     },
                     child: Container(

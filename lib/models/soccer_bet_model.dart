@@ -44,7 +44,7 @@ class SoccerBetModel {
 class SoccerBetDetailModel {
   int gameId;
   int betTeamId;
-  bool betUnder;
+  String? betUnder;
 
   SoccerBetDetailModel({
     required this.gameId,

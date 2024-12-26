@@ -21,11 +21,11 @@ class BodyFootballViewCard extends StatefulWidget {
 
 class _FootballViewCardState extends State<BodyFootballViewCard> {
   bool isResultTap = true;
-  bool? isTeamOne;
+  String? isTeamOne;
 
   @override
   void initState() {
-    isTeamOne = !widget.detailModel.betUnder;
+    //isTeamOne = !widget.detailModel.betUnder; //yap
     super.initState();
   }
 
@@ -47,14 +47,14 @@ class _FootballViewCardState extends State<BodyFootballViewCard> {
 
                     onTap: () {
                       setState(() {
-                        isTeamOne = true;
+                        isTeamOne = "true";
                       });
                     },
                     child: Stack(
                       children: [
                         Container(
                           decoration: BoxDecoration(
-                              color: isTeamOne == true
+                              color: isTeamOne == "true"
                                   ? AppColor.greenDark2
                                   : AppColor.greenPrimary,
                               borderRadius: BorderRadius.circular(6)),
@@ -115,7 +115,7 @@ class _FootballViewCardState extends State<BodyFootballViewCard> {
                     //     :
                     onTap: () {
                       setState(() {
-                        isTeamOne = false;
+                        isTeamOne = "false";
                       });
                     },
                     child: Stack(
@@ -123,7 +123,7 @@ class _FootballViewCardState extends State<BodyFootballViewCard> {
                         Container(
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
-                              color: isTeamOne == false
+                              color: isTeamOne == "false"
                                   ? AppColor.greenDark2
                                   : AppColor.greenPrimary,
                               borderRadius: BorderRadius.circular(6)),
@@ -182,7 +182,7 @@ class _FootballViewCardState extends State<BodyFootballViewCard> {
                     onTap: () {
                       setState(() {
                         isResultTap = !isResultTap;
-                        isTeamOne = null;
+                        isTeamOne = "null";
                       });
                     },
                     child: Container(
