@@ -18,12 +18,19 @@ class FootballViewCard extends StatefulWidget {
 }
 
 class _FootballViewCardState extends State<FootballViewCard> {
-  bool isResultTap = true;
-  String? isTeamOne = "false";
+  bool isResultTap = false;
+  String? isTeamOne ;
+  String? isSelectedTeam;
 
   @override
   void initState() {
-    //isTeamOne = !widget.detailModel.betUnder;// yap
+    isTeamOne = widget.detailModel.betUnder;// yap
+    isSelectedTeam = widget.detailModel.betType;
+    print("CheckingData:: ${isTeamOne}");
+
+    if(isTeamOne == "true" || isTeamOne == "false"){
+      isResultTap = true;
+    }
     super.initState();
   }
 
@@ -43,16 +50,16 @@ class _FootballViewCardState extends State<FootballViewCard> {
                     // onTap: !isResultTap
                     //     ? null
 
-                    onTap: () {
+                    /*onTap: () {
                       setState(() {
                         isTeamOne = "true";
                       });
-                    },
+                    },*/
                     child: Stack(
                       children: [
                         Container(
                           decoration: BoxDecoration(
-                              color: isTeamOne == true
+                              color: (isTeamOne == "false" || isTeamOne == "homeTeam" || isSelectedTeam=="homeTeam")
                                   ? AppColor.greenDark2
                                   : AppColor.greenPrimary,
                               borderRadius: BorderRadius.circular(6)),
@@ -68,14 +75,14 @@ class _FootballViewCardState extends State<FootballViewCard> {
                         !isResultTap
                             ? Container()
                             : const Positioned(
-                                top: 1,
-                                bottom: 1,
-                                right: 5,
-                                child: Icon(
-                                  Icons.arrow_circle_up,
-                                  color: AppColor.white,
-                                  size: 25,
-                                ))
+                            top: 1,
+                            bottom: 1,
+                            right: 5,
+                            child: Icon(
+                              Icons.arrow_circle_up,
+                              color: AppColor.white,
+                              size: 25,
+                            ))
                       ],
                     ),
                   ),
@@ -111,17 +118,17 @@ class _FootballViewCardState extends State<FootballViewCard> {
                     // onTap: !isResultTap
                     //     ? null
                     //     :
-                    onTap: () {
+                    /*onTap: () {
                       setState(() {
                         isTeamOne = "false";
                       });
-                    },
+                    },*/
                     child: Stack(
                       children: [
                         Container(
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
-                              color: isTeamOne == false
+                              color: (isTeamOne == "true" || isTeamOne == "awayTeam" || isSelectedTeam=="awayTeam")
                                   ? AppColor.greenDark2
                                   : AppColor.greenPrimary,
                               borderRadius: BorderRadius.circular(6)),
@@ -136,14 +143,14 @@ class _FootballViewCardState extends State<FootballViewCard> {
                         !isResultTap
                             ? Container()
                             : const Positioned(
-                                top: 1,
-                                bottom: 1,
-                                right: 5,
-                                child: Icon(
-                                  Icons.arrow_circle_down,
-                                  color: Colors.red,
-                                  size: 25,
-                                ))
+                            top: 1,
+                            bottom: 1,
+                            right: 5,
+                            child: Icon(
+                              Icons.arrow_circle_down,
+                              color: Colors.red,
+                              size: 25,
+                            ))
                       ],
                     ),
                   ),
@@ -177,16 +184,16 @@ class _FootballViewCardState extends State<FootballViewCard> {
                 Expanded(
                   flex: 1,
                   child: InkWell(
-                    onTap: () {
+                    /* onTap: () {
                       setState(() {
                         isResultTap = !isResultTap;
                         isTeamOne = "null";
                       });
-                    },
+                    },*/
                     child: Container(
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
-                          color: isResultTap
+                          color: (isTeamOne == "false" || isTeamOne == "true")
                               ? AppColor.greenDark2
                               : AppColor.greenPrimary,
                           borderRadius: BorderRadius.circular(6)),

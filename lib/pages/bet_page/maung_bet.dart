@@ -7,6 +7,8 @@ import 'package:two_d/widgets/football_view_card.dart';
 import 'package:two_d/widgets/football_widget.dart';
 import 'package:two_d/widgets/show_loading.dart';
 
+import '../../bloc/football/manug/get_maung_match_cubit.dart';
+
 class MaungBet extends StatefulWidget {
   final Map<int, Map<SoccerModel, SoccerBetDetailModel>> chooseMap;
   const MaungBet({super.key, required this.chooseMap});
@@ -33,7 +35,7 @@ class _MaungBetState extends State<MaungBet> {
     print("length");
     print(widget.chooseMap.values.length);
     for (Map<SoccerModel, SoccerBetDetailModel> val
-        in widget.chooseMap.values) {
+    in widget.chooseMap.values) {
       chooseValues[val.keys.first] = val.values.first;
     }
     chosenList = chooseValues.keys.toList();
@@ -60,6 +62,7 @@ class _MaungBetState extends State<MaungBet> {
             Navigator.of(context).pop();
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text("Success")));
+            BlocProvider.of<GetMaungMatchCubit>(context).getMaungMatch();
           }
         },
         child: Column(
@@ -77,6 +80,13 @@ class _MaungBetState extends State<MaungBet> {
                   ),
                   const SizedBox(
                     height: 20,
+                    child: Text(
+                      "Minimun Bet (500 Kyats)",
+                      style: TextStyle(color: Colors.red),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
                   ),
                   Text("You choose"),
                   const SizedBox(
@@ -86,7 +96,7 @@ class _MaungBetState extends State<MaungBet> {
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       separatorBuilder: (ctx, index) =>
-                          const SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       itemCount: chosenList.length,
                       itemBuilder: (ctx, index) {
                         return FootballViewCard(
@@ -101,15 +111,16 @@ class _MaungBetState extends State<MaungBet> {
               padding: const EdgeInsets.all(16),
               child: ElevatedButton(
                 child: const Text("Bet Now"),
-                onPressed: amountController.text.isEmpty
+                onPressed: amountController.text.isEmpty ||
+                    (int.tryParse(amountController.text) ?? 0) < 500
                     ? null
                     : () {
-                        BlocProvider.of<SoccerBetCubit>(context).bet(
-                            SoccerBetModel(
-                                gameType: "Maung",
-                                amount: int.parse(amountController.text),
-                                soccerBetDetails: betDetailList));
-                      },
+                  BlocProvider.of<SoccerBetCubit>(context).bet(
+                      SoccerBetModel(
+                          gameType: "Maung",
+                          amount: int.parse(amountController.text),
+                          soccerBetDetails: betDetailList));
+                },
               ),
             ),
           ],

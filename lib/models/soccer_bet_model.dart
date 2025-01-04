@@ -36,7 +36,7 @@ class SoccerBetModel {
       'gameType': gameType,
       'amount': amount,
       'soccerBetDetails':
-          soccerBetDetails.map((detail) => detail.toJson()).toList(),
+      soccerBetDetails.map((detail) => detail.toJson()).toList(),
     };
   }
 }
@@ -45,18 +45,21 @@ class SoccerBetDetailModel {
   int gameId;
   int betTeamId;
   String? betUnder;
+  String? betType;
 
   SoccerBetDetailModel({
     required this.gameId,
     required this.betTeamId,
     required this.betUnder,
+    String? this.betType
   });
 
   factory SoccerBetDetailModel.fromJson(Map<String, dynamic> json) {
     return SoccerBetDetailModel(
-      gameId: json['gameId'],
-      betTeamId: json['betTeamId'],
-      betUnder: json['betUnder'],
+        gameId: json['gameId'],
+        betTeamId: json['betTeamId'],
+        betUnder: json['betUnder'],
+        betType: json['betType']
     );
   }
 
@@ -65,6 +68,7 @@ class SoccerBetDetailModel {
       'gameId': gameId,
       'betTeamId': betTeamId,
       'betUnder': betUnder,
+      'betType': betType
     };
   }
 }

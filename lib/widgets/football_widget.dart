@@ -24,8 +24,9 @@ class FootballWidget extends StatefulWidget {
 class _FootballWidgetState extends State<FootballWidget> {
   bool isResultTap = false;
   bool? isTeamOne;
-   bool isChooseGp = false;
+  bool isChooseGp = false;
   String? betUnderValue = "null";
+  String? betType = "null";
 
   @override
   Widget build(BuildContext context) {
@@ -72,9 +73,12 @@ class _FootballWidgetState extends State<FootballWidget> {
                       });
 
                       if (isChooseGp == true) {
+                        betType = 'null';
                         betUnderValue = "false";
                       } else {
+                        // betUnderValue = "homeTeam";
                         betUnderValue = "null";
+                        betType = 'homeTeam';
                       }
                       widget.onRemove();
 
@@ -83,6 +87,7 @@ class _FootballWidgetState extends State<FootballWidget> {
                           betTeamId: widget.model.homeTeamId,
                           gameId: widget.model.id,
                           betUnder: betUnderValue,
+                          betType: betType,
                         )
                       });
                     },
@@ -106,14 +111,14 @@ class _FootballWidgetState extends State<FootballWidget> {
                         !isResultTap
                             ? Container()
                             : const Positioned(
-                                top: 1,
-                                bottom: 1,
-                                right: 5,
-                                child: Icon(
-                                  Icons.arrow_circle_up,
-                                  color: AppColor.white,
-                                  size: 25,
-                                ))
+                            top: 1,
+                            bottom: 1,
+                            right: 5,
+                            child: Icon(
+                              Icons.arrow_circle_up,
+                              color: AppColor.white,
+                              size: 25,
+                            ))
                       ],
                     ),
                   ),
@@ -157,8 +162,11 @@ class _FootballWidgetState extends State<FootballWidget> {
 
                       if (isChooseGp == true) {
                         betUnderValue = "true";
+                        betType = 'null';
                       } else {
+                        //betUnderValue = "awayTeam";
                         betUnderValue = "null";
+                        betType = 'awayTeam';
                       }
 
                       widget.onRemove();
@@ -168,6 +176,7 @@ class _FootballWidgetState extends State<FootballWidget> {
                           betTeamId: widget.model.awayTeamId,
                           gameId: widget.model.id,
                           betUnder: betUnderValue,
+                          betType: betType,
                         )
                       });
                     },
@@ -191,14 +200,14 @@ class _FootballWidgetState extends State<FootballWidget> {
                         !isResultTap
                             ? Container()
                             : const Positioned(
-                                top: 1,
-                                bottom: 1,
-                                right: 5,
-                                child: Icon(
-                                  Icons.arrow_circle_down,
-                                  color: Colors.red,
-                                  size: 25,
-                                ))
+                            top: 1,
+                            bottom: 1,
+                            right: 5,
+                            child: Icon(
+                              Icons.arrow_circle_down,
+                              color: Colors.red,
+                              size: 25,
+                            ))
                       ],
                     ),
                   ),

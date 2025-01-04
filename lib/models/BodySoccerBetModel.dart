@@ -42,20 +42,23 @@ class BodySoccerBetDetailModel {
   int betTeamId;
   String? betUnder;
   int? betAmount;
+  String? betType;
 
   BodySoccerBetDetailModel({
     required this.gameId,
     required this.betTeamId,
     required this.betUnder,
     required this.betAmount,
+    this.betType
   });
 
   factory BodySoccerBetDetailModel.fromJson(Map<String, dynamic> json) {
     return BodySoccerBetDetailModel(
-      gameId: json['gameId'],
-      betAmount: json['amount'],
-      betTeamId: json['betTeamId'],
-      betUnder: json['betUnder'],
+        gameId: json['gameId'],
+        betAmount: json['amount'],
+        betTeamId: json['betTeamId'],
+        betUnder: json['betUnder'],
+        betType: json['betType']
     );
   }
 
@@ -65,6 +68,7 @@ class BodySoccerBetDetailModel {
       'amount': betAmount,
       'betTeamId': betTeamId,
       'betUnder': betUnder,
+      'betType':betType
     };
   }
 
@@ -74,12 +78,14 @@ class BodySoccerBetDetailModel {
     int? betTeamId,
     String? betUnder,
     int? betAmount,
+    String? betType
   }) {
     return BodySoccerBetDetailModel(
-      gameId: gameId ?? this.gameId,
-      betTeamId: betTeamId ?? this.betTeamId,
-      betUnder: betUnder ?? this.betUnder,
-      betAmount: betAmount ?? this.betAmount,
+        gameId: gameId ?? this.gameId,
+        betTeamId: betTeamId ?? this.betTeamId,
+        betUnder: betUnder ?? this.betUnder,
+        betAmount: betAmount ?? this.betAmount,
+        betType: betType ?? this.betType
     );
   }
 }
