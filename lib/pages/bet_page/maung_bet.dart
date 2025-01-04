@@ -77,6 +77,13 @@ class _MaungBetState extends State<MaungBet> {
                   ),
                   const SizedBox(
                     height: 20,
+                    child: Text(
+                      "Minimun Bet (500 Kyats)",
+                      style: TextStyle(color: Colors.red),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
                   ),
                   Text("You choose"),
                   const SizedBox(
@@ -101,7 +108,8 @@ class _MaungBetState extends State<MaungBet> {
               padding: const EdgeInsets.all(16),
               child: ElevatedButton(
                 child: const Text("Bet Now"),
-                onPressed: amountController.text.isEmpty
+                onPressed: amountController.text.isEmpty ||
+                    (int.tryParse(amountController.text) ?? 0) < 500
                     ? null
                     : () {
                         BlocProvider.of<SoccerBetCubit>(context).bet(

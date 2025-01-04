@@ -26,6 +26,10 @@ class _FootballViewCardState extends State<BodyFootballViewCard> {
   void initState() {
     isTeamOne = widget.detailModel.betUnder; //yap
     print("CheckingData::  ${isTeamOne}");
+
+    if(isTeamOne == "true" || isTeamOne == "false"){
+      isResultTap = true;
+    }
     super.initState();
   }
 

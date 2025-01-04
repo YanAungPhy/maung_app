@@ -125,12 +125,21 @@ class _MaungPageState extends State<MaungPage> {
                     child: ElevatedButton(
                       child: const Text("Bet"),
                       onPressed: () {
-                        print(chooseMap.length);
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (ctx) => MaungBet(
-                            chooseMap: chooseMap,
-                          ),
-                        ));
+                        print("CheckData:: ${chooseMap.length}");
+                        if (chooseMap.length < 3) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text("Please select at least three team."),
+                            ),
+                          );
+                        } else {
+                          print(chooseMap.length);
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (ctx) => MaungBet(
+                              chooseMap: chooseMap,
+                            ),
+                          ));
+                        }
                       },
                     ),
                   ),
