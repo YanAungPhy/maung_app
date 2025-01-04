@@ -74,7 +74,7 @@ class _FootballWidgetState extends State<BodyFootballWidget> {
                       if (isChooseGp == true) {
                         betUnderValue = "false";
                       } else {
-                        betUnderValue = "null";
+                        betUnderValue = "homeTeam";
                       }
 
                       widget.onRemove();
@@ -160,7 +160,7 @@ class _FootballWidgetState extends State<BodyFootballWidget> {
                       if (isChooseGp == true) {
                         betUnderValue = "true";
                       } else {
-                        betUnderValue = "null";
+                        betUnderValue = "awayTeam";
                       }
                       widget.onRemove();
 

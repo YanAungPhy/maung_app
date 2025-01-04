@@ -11,6 +11,7 @@ import '../../widgets/show_loading.dart';
 
 class BawdiBet extends StatefulWidget {
   final Map<int, Map<SoccerModel, BodySoccerBetDetailModel>> chooseMap;
+
   const BawdiBet({super.key, required this.chooseMap});
 
   @override
@@ -37,9 +38,11 @@ class _BawdiBetState extends State<BawdiBet> {
 
   void loadData() {
     Map<SoccerModel, BodySoccerBetDetailModel> chooseValues = {};
-    int betAmount = int.tryParse(amountController.text) ?? 0; // Get value from controller
+    int betAmount =
+        int.tryParse(amountController.text) ?? 0; // Get value from controller
 
-    for (Map<SoccerModel, BodySoccerBetDetailModel> val in widget.chooseMap.values) {
+    for (Map<SoccerModel, BodySoccerBetDetailModel> val
+        in widget.chooseMap.values) {
       SoccerModel soccerModel = val.keys.first;
       BodySoccerBetDetailModel detailModel = val.values.first.copyWith(
         betAmount: betAmount,
@@ -110,7 +113,7 @@ class _BawdiBetState extends State<BawdiBet> {
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     separatorBuilder: (ctx, index) =>
-                    const SizedBox(height: 20),
+                        const SizedBox(height: 20),
                     itemCount: chosenList.length,
                     itemBuilder: (ctx, index) {
                       return BodyFootballViewCard(
@@ -127,21 +130,23 @@ class _BawdiBetState extends State<BawdiBet> {
               padding: const EdgeInsets.all(16),
               child: ElevatedButton(
                 child: const Text("Bet Now"),
-                onPressed: amountController.text.isEmpty
+                onPressed: amountController.text.isEmpty ||
+                        (int.tryParse(amountController.text) ?? 0) < 500
                     ? null
                     : () {
-                  int betAmount = int.tryParse(amountController.text) ?? 0;
-                  betDetailList = betDetailList.map((detail) {
-                    return detail.copyWith(betAmount: betAmount);
-                  }).toList();
+                        int betAmount =
+                            int.tryParse(amountController.text) ?? 0;
+                        betDetailList = betDetailList.map((detail) {
+                          return detail.copyWith(betAmount: betAmount);
+                        }).toList();
 
-                  BlocProvider.of<BodySoccerBetCubit>(context).bet(
-                    BodySoccerBetModel(
-                      gameType: "Body",
-                      soccerBetDetails: betDetailList,
-                    ),
-                  );
-                },
+                        BlocProvider.of<BodySoccerBetCubit>(context).bet(
+                          BodySoccerBetModel(
+                            gameType: "Body",
+                            soccerBetDetails: betDetailList,
+                          ),
+                        );
+                      },
               ),
             ),
           ],
