@@ -79,6 +79,7 @@ class _FootballWidgetState extends State<FootballWidget> {
                         // betUnderValue = "homeTeam";
                         betUnderValue = "null";
                         betType = 'homeTeam';
+                        betUnderValue = "homeTeam";
                       }
                       widget.onRemove();
 
@@ -162,11 +163,8 @@ class _FootballWidgetState extends State<FootballWidget> {
 
                       if (isChooseGp == true) {
                         betUnderValue = "true";
-                        betType = 'null';
                       } else {
-                        //betUnderValue = "awayTeam";
                         betUnderValue = "null";
-                        betType = 'awayTeam';
                       }
 
                       widget.onRemove();
@@ -176,7 +174,6 @@ class _FootballWidgetState extends State<FootballWidget> {
                           betTeamId: widget.model.awayTeamId,
                           gameId: widget.model.id,
                           betUnder: betUnderValue,
-                          betType: betType,
                         )
                       });
                     },
