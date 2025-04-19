@@ -21,11 +21,14 @@ class BodyFootballViewCard extends StatefulWidget {
 class _FootballViewCardState extends State<BodyFootballViewCard> {
   bool isResultTap = false;
   String? isTeamOne;
+  String? isSelectedTeam;
 
   @override
   void initState() {
     isTeamOne = widget.detailModel.betUnder; //yap
+    isSelectedTeam = widget.detailModel.betType;
     print("CheckingData::  ${isTeamOne}");
+    print("CheckingData::  ${isSelectedTeam}");
 
     if(isTeamOne == "true" || isTeamOne == "false"){
       isResultTap = true;
@@ -58,7 +61,7 @@ class _FootballViewCardState extends State<BodyFootballViewCard> {
                       children: [
                         Container(
                           decoration: BoxDecoration(
-                              color: (isTeamOne == "false" || isTeamOne == "homeTeam")
+                              color: (isTeamOne == "false" || isTeamOne == "homeTeam" || isSelectedTeam=="homeTeam")
                                   ? AppColor.greenDark2
                                   : AppColor.greenPrimary,
                               borderRadius: BorderRadius.circular(6)),
@@ -127,7 +130,7 @@ class _FootballViewCardState extends State<BodyFootballViewCard> {
                         Container(
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
-                              color: (isTeamOne == "true" || isTeamOne == "awayTeam")
+                              color: (isTeamOne == "true" || isTeamOne == "awayTeam"|| isSelectedTeam=="awayTeam" )
                                   ? AppColor.greenDark2
                                   : AppColor.greenPrimary,
                               borderRadius: BorderRadius.circular(6)),

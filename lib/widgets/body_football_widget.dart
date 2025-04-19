@@ -27,6 +27,7 @@ class _FootballWidgetState extends State<BodyFootballWidget> {
   bool? isTeamOne;
   bool isChooseGp = false;
   String? betUnderValue = "null";
+  String? betType = "null";
 
   @override
   Widget build(BuildContext context) {
@@ -72,9 +73,12 @@ class _FootballWidgetState extends State<BodyFootballWidget> {
                       });
 
                       if (isChooseGp == true) {
+                        betType = 'null';
                         betUnderValue = "false";
                       } else {
-                        betUnderValue = "homeTeam";
+                        // betUnderValue = "homeTeam";
+                        betUnderValue = "null";
+                        betType = 'homeTeam';
                       }
 
                       widget.onRemove();
@@ -84,6 +88,7 @@ class _FootballWidgetState extends State<BodyFootballWidget> {
                           betTeamId: widget.model.homeTeamId,
                           gameId: widget.model.id,
                           betUnder: betUnderValue,
+                          betType: betType,
                           betAmount: 0,
                         )
                       });
@@ -159,8 +164,11 @@ class _FootballWidgetState extends State<BodyFootballWidget> {
 
                       if (isChooseGp == true) {
                         betUnderValue = "true";
+                        betType = 'null';
                       } else {
-                        betUnderValue = "awayTeam";
+                        //betUnderValue = "awayTeam";
+                        betUnderValue = "null";
+                        betType = 'awayTeam';
                       }
                       widget.onRemove();
 
@@ -169,6 +177,7 @@ class _FootballWidgetState extends State<BodyFootballWidget> {
                           betTeamId: widget.model.awayTeamId,
                           gameId: widget.model.id,
                           betUnder: betUnderValue,
+                          betType: betType,
                           betAmount: 2000,
                         )
                       });
