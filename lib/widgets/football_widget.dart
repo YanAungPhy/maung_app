@@ -25,7 +25,7 @@ class _FootballWidgetState extends State<FootballWidget> {
   bool isResultTap = false;
   bool? isTeamOne;
   bool isChooseGp = false;
-  String? betUnderValue = "null";
+  String? betUnderValue = "false";
   String? betType = "null";
 
   @override
@@ -73,11 +73,10 @@ class _FootballWidgetState extends State<FootballWidget> {
                       });
 
                       if (isChooseGp == true) {
-                        betType = 'null';
-                        betUnderValue = "false";
+                        betType = 'homeTeam';
+                        betUnderValue = "true";
                       } else {
-                        // betUnderValue = "homeTeam";
-                        betUnderValue = "null";
+                        betUnderValue = "false";
                         betType = 'homeTeam';
                       }
                       widget.onRemove();
@@ -161,11 +160,10 @@ class _FootballWidgetState extends State<FootballWidget> {
                       });
 
                       if (isChooseGp == true) {
+                        betType = 'awayTeam';
                         betUnderValue = "true";
-                        betType = 'null';
                       } else {
-                        //betUnderValue = "awayTeam";
-                        betUnderValue = "null";
+                        betUnderValue = "false";
                         betType = 'awayTeam';
                       }
 

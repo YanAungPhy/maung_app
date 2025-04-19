@@ -186,7 +186,9 @@ class FootballHistoryDetailPage extends StatelessWidget {
                                     height: 50,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(6.0),
-                                      color: AppColor.greenPrimary,
+                                      color: betDetail.betUnder == true
+                                          ? AppColor.greenDark2
+                                          : AppColor.greenPrimary,
                                     ),
                                     child: Center(
                                       child: Text(

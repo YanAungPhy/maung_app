@@ -30,9 +30,15 @@ class _FootballViewCardState extends State<BodyFootballViewCard> {
     print("CheckingData::  ${isTeamOne}");
     print("CheckingData::  ${isSelectedTeam}");
 
-    if(isTeamOne == "true" || isTeamOne == "false"){
+    /*if(isTeamOne == "true" || isTeamOne == "false"){
       isResultTap = true;
+    }*/
+    if(isTeamOne == "true"){
+      isResultTap = true;
+    }else if(isTeamOne == "false"){
+      isResultTap = false;
     }
+
     super.initState();
   }
 
@@ -61,7 +67,7 @@ class _FootballViewCardState extends State<BodyFootballViewCard> {
                       children: [
                         Container(
                           decoration: BoxDecoration(
-                              color: (isTeamOne == "false" || isTeamOne == "homeTeam" || isSelectedTeam=="homeTeam")
+                              color: ( isTeamOne == "homeTeam" || isSelectedTeam=="homeTeam")
                                   ? AppColor.greenDark2
                                   : AppColor.greenPrimary,
                               borderRadius: BorderRadius.circular(6)),
@@ -130,7 +136,7 @@ class _FootballViewCardState extends State<BodyFootballViewCard> {
                         Container(
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
-                              color: (isTeamOne == "true" || isTeamOne == "awayTeam"|| isSelectedTeam=="awayTeam" )
+                              color: ( isTeamOne == "awayTeam"|| isSelectedTeam=="awayTeam" )
                                   ? AppColor.greenDark2
                                   : AppColor.greenPrimary,
                               borderRadius: BorderRadius.circular(6)),
@@ -195,7 +201,7 @@ class _FootballViewCardState extends State<BodyFootballViewCard> {
                     child: Container(
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
-                          color: (isTeamOne == "false" || isTeamOne == "true")
+                          color: ( isTeamOne == "true")
                               ? AppColor.greenDark2
                               : AppColor.greenPrimary,
                           borderRadius: BorderRadius.circular(6)),
