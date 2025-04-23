@@ -130,14 +130,18 @@ class _MaungPageState extends State<MaungPage> {
                             SnackBar(content: Text("Please select at least three team.")),
                           );
                         } else {
-                          await Navigator.of(context).push(MaterialPageRoute(
-                            builder: (ctx) => MaungBet(chooseMap: chooseMap),
-                          ));
+                          final result = await Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (ctx) => MaungBet(chooseMap: chooseMap),
+                            ),
+                          );
 
                           // Clear chooseMap when coming back
-                          setState(() {
-                            chooseMap.clear();
-                          });
+                          if (result == true) {
+                            setState(() {
+                              chooseMap.clear();
+                            });
+                          }
                         }
                       },
                     ),

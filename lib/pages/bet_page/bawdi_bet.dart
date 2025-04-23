@@ -74,7 +74,7 @@ class _BawdiBetState extends State<BawdiBet> {
             ));
           } else if (state is BodySoccerBetSuccess) {
             Navigator.of(context).pop();
-            Navigator.of(context).pop();
+            Navigator.of(context).pop(true);
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text("Success")));
             BlocProvider.of<GetBawdiMatchCubit>(context).getBawdiMatch();

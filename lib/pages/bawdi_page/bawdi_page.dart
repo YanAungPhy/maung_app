@@ -117,23 +117,26 @@ class _BawDiPageState extends State<BawDiPage> {
                     Expanded(
                         child: ElevatedButton(
                       child: const Text("Bet"),
-                          onPressed: () async {
-                             if (chooseMap.length > 1) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text("Please select only one team.")),
-                              );
-                            } else {
-                              await Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (ctx) => BawdiBet(chooseMap: chooseMap),
-                                ),
-                              );
+                            onPressed: () async {
+                              if (chooseMap.length > 1) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(content: Text("Please select only one team.")),
+                                );
+                              } else {
+                                final result = await Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (ctx) => BawdiBet(chooseMap: chooseMap),
+                                  ),
+                                );
 
-                              setState(() {
-                                chooseMap.clear();
-                              });
+                                if (result == true) {
+                                  setState(() {
+                                    chooseMap.clear();
+                                  });
+                                }
+                              }
                             }
-                          },
+
 
                         ))
                   ],

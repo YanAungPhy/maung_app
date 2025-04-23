@@ -60,6 +60,7 @@ class _MaungBetState extends State<MaungBet> {
           } else if (state is SoccerBetSuccess) {
             Navigator.of(context).pop();
             Navigator.of(context).pop();
+            Navigator.of(context).pop(true);
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text("Success")));
             BlocProvider.of<GetMaungMatchCubit>(context).getMaungMatch();
