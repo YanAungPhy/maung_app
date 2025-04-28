@@ -5,14 +5,14 @@ import 'package:two_d/utils/global_import.dart';
 
 import '../../bloc/history/bloc/football/football_history_bloc.dart';
 import '../../models/football_history_model.dart';
-class FootballHistoryPage extends StatefulWidget {
-  const FootballHistoryPage({super.key});
+class GainFootballHistoryPage extends StatefulWidget {
+  const GainFootballHistoryPage({super.key});
 
   @override
-  State<FootballHistoryPage> createState() => _FootballHistoryPageState();
+  State<GainFootballHistoryPage> createState() => _FootballHistoryPageState();
 }
 
-class _FootballHistoryPageState extends State<FootballHistoryPage> {
+class _FootballHistoryPageState extends State<GainFootballHistoryPage> {
   List<FootballHistoryModel> historyModelList = [];
 
   @override
@@ -23,7 +23,7 @@ class _FootballHistoryPageState extends State<FootballHistoryPage> {
 
   void getData() {
     BlocProvider.of<FootballHistoryBloc>(context)
-        .add(FootballTapHistoryMoreEvent( gameType: "Unfinish"));
+        .add(FootballTapHistoryMoreEvent( gameType: "Gain"));
   }
 
   @override
@@ -37,12 +37,14 @@ class _FootballHistoryPageState extends State<FootballHistoryPage> {
           if (historyModelList.isNotEmpty) {
             return listVbuilder(size);
           } else {
+            print("Hello Yap:;;");
             return const ErrorPage(error: "မှတ်တမ်းမရှိပါ");
           }
         } else if (state is FootballHistoryBlocFail) {
           return ErrorPage(error: state.error);
         } else {
-          return const Center(child: CircularProgressIndicator());
+         // return const Center(child: CircularProgressIndicator());
+          return const ErrorPage(error: "မှတ်တမ်းမရှိပါ");
         }
       },
     );

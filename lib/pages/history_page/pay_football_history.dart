@@ -5,14 +5,14 @@ import 'package:two_d/utils/global_import.dart';
 
 import '../../bloc/history/bloc/football/football_history_bloc.dart';
 import '../../models/football_history_model.dart';
-class FootballHistoryPage extends StatefulWidget {
-  const FootballHistoryPage({super.key});
+class PayFootballHistoryPage extends StatefulWidget {
+  const PayFootballHistoryPage({super.key});
 
   @override
-  State<FootballHistoryPage> createState() => _FootballHistoryPageState();
+  State<PayFootballHistoryPage> createState() => _FootballHistoryPageState();
 }
 
-class _FootballHistoryPageState extends State<FootballHistoryPage> {
+class _FootballHistoryPageState extends State<PayFootballHistoryPage> {
   List<FootballHistoryModel> historyModelList = [];
 
   @override
@@ -23,7 +23,7 @@ class _FootballHistoryPageState extends State<FootballHistoryPage> {
 
   void getData() {
     BlocProvider.of<FootballHistoryBloc>(context)
-        .add(FootballTapHistoryMoreEvent( gameType: "Unfinish"));
+        .add(FootballTapHistoryMoreEvent( gameType: "Pay"));
   }
 
   @override

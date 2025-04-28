@@ -11,6 +11,6 @@ class FootballGetHistoryRepoImpl implements FootballGetHistoryRepo {
 
   @override
   Future<ResponseModel> getHistory({required String type,required int page}) async {
-    return await apiService.getReq("soccer-bets?token");
+    return await apiService.getReq("soccer-bets?&token=&status=$type");
   }
 }

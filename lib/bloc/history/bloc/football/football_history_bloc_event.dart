@@ -17,3 +17,5 @@ class FootballTapHistoryMoreEvent extends FootballHistoryBlocEvent {
   @override
   List<Object?> get props => [gameType];
 }
+
+

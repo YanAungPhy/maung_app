@@ -1,20 +1,18 @@
-import 'package:two_d/bloc/history/bloc/history_bloc_bloc.dart';
-import 'package:two_d/pages/history_page/3d_history.dart';
 import 'package:two_d/pages/history_page/football_history.dart';
-import 'package:two_d/pages/history_page/twod_history.dart';
+import 'package:two_d/pages/history_page/gain_football_history.dart';
+import 'package:two_d/pages/history_page/pay_football_history.dart';
 import 'package:two_d/utils/global_import.dart';
 
 import '../../bloc/history/bloc/football/football_history_bloc.dart';
-import 'main_football_history.dart';
 
-class HistoryPage extends StatefulWidget {
-  const HistoryPage({super.key});
+class MainFootBallHistory extends StatefulWidget {
+  const MainFootBallHistory({super.key});
 
   @override
-  State<HistoryPage> createState() => _HistoryPageState();
+  State<MainFootBallHistory> createState() => _MainFootBallHistory();
 }
 
-class _HistoryPageState extends State<HistoryPage>
+class _MainFootBallHistory extends State<MainFootBallHistory>
     with TickerProviderStateMixin {
   late TabController _controller;
   @override
@@ -27,52 +25,42 @@ class _HistoryPageState extends State<HistoryPage>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.nearlywhite.withOpacity(.5),
-      appBar: AppBar(
-        backgroundColor: AppColor.greenBlack,
-        leading: const Icon(Icons.history),
-        title: const Text("မှတ်တမ်းများ"),
-      ),
       body: SafeArea(
         child: Column(
           children: [
             Container(
-              color: AppColor.greenDark2,
+              color: AppColor.grey,
               child: TabBar(
-                labelColor: AppColor.yellow,
-                unselectedLabelColor: AppColor.unSelectedYellow,
-                indicatorColor: AppColor.greenSecondry,
+                labelColor: AppColor.red,
+                unselectedLabelColor: AppColor.footballTabColor,
+                indicatorColor: AppColor.blue,
                 automaticIndicatorColorAdjustment: true,
                 controller: _controller,
                 tabs: const [
                   Tab(
                       icon: Text(
-                        "2D",
+                        "Unfinished",
                         style: TextStyle(
-                            fontSize: 22,
+                            fontSize: 16,
                             // color: AppColor.yellow,
                             fontWeight: FontWeight.w600),
-                      ),
-                      text: "History"),
+                      )),
                   Tab(
                     icon: Text(
-                      "3D",
+                      "Gain",
                       style: TextStyle(
-                          fontSize: 22,
+                          fontSize: 16,
                           // color: AppColor.yellow,
                           fontWeight: FontWeight.w600),
-                    ),
-                    text: "History",
-                  ),
+                    )),
                   Tab(
                     icon: Text(
-                      "Football",
+                      "Pay",
                       style: TextStyle(
-                          fontSize: 22,
+                          fontSize: 16,
                           // color: AppColor.yellow,
                           fontWeight: FontWeight.w600),
-                    ),
-                    text: "History",
-                  ),
+                    )),
                 ],
               ),
             ),
@@ -80,19 +68,19 @@ class _HistoryPageState extends State<HistoryPage>
               child: TabBarView(
                 controller: _controller,
                 children: [
-                  BlocProvider<HistoryBlocBloc>(
-                    create: (context) => HistoryBlocBloc(getIt.call()),
-                    child: const TwoDHistoryPage(),
-                  ),
-                  BlocProvider<HistoryBlocBloc>(
-                    create: (context) => HistoryBlocBloc(getIt.call()),
-                    child: const ThreeDHistoryPage(),
-                  ),
-                  /*BlocProvider<FootballHistoryBloc>(
+                  BlocProvider<FootballHistoryBloc>(
                     create: (context) => FootballHistoryBloc(getIt.call()),
                     child: const FootballHistoryPage(),
-                  ),*/
-                  const MainFootBallHistory(),
+                  ),
+                  BlocProvider<FootballHistoryBloc>(
+                    create: (context) => FootballHistoryBloc(getIt.call()),
+                    child: const GainFootballHistoryPage(),
+                  ),
+                  BlocProvider<FootballHistoryBloc>(
+                    create: (context) => FootballHistoryBloc(getIt.call()),
+                    child: const PayFootballHistoryPage(),
+                  ),
+
                 ],
               ),
             ),

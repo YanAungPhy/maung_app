@@ -17,5 +17,6 @@ class AppColor {
   static const Color win = Color.fromARGB(255, 3, 148, 34);
   static const Color cyber = Color.fromARGB(255, 21, 239, 247);
   static const Color greenDark3 = Color.fromARGB(120, 25, 110, 60);
+  static const Color footballTabColor =  Color.fromARGB(255, 235, 121, 250);
 
 }
