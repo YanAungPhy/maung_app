@@ -42,7 +42,8 @@ class _FootballHistoryPageState extends State<PayFootballHistoryPage> {
         } else if (state is FootballHistoryBlocFail) {
           return ErrorPage(error: state.error);
         } else {
-          return const Center(child: CircularProgressIndicator());
+          //return const Center(child: CircularProgressIndicator());
+          return const ErrorPage(error: "မှတ်တမ်းမရှိပါ");
         }
       },
     );
