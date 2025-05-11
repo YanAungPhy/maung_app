@@ -50,7 +50,7 @@ class _AppPageState extends State<AppPage> {
       constraints: const BoxConstraints.expand(),
       decoration: const BoxDecoration(
         image: DecorationImage(
-            image: AssetImage("images/bg.png"), fit: BoxFit.cover),
+            image: AssetImage("images/background.jpg"), fit: BoxFit.cover),
       ),
       child: Scaffold(
         extendBodyBehindAppBar: true,
